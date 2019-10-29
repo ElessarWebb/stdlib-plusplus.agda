@@ -3,9 +3,9 @@ module Data.List.Prefix where
 open import Data.Nat
 open import Data.List.At
 open import Data.List.Any hiding (map)
-open import Data.List.Any.Membership.Propositional
-open import Relation.Binary.Core using (REL; Reflexive; Transitive)
-open import Relation.Binary.List.Pointwise hiding (refl; map)
+open import Data.List.Membership.Propositional
+open import Relation.Binary
+open import Data.List.Relation.Binary.Pointwise hiding (refl; map)
 open import Data.List
 
 -- prefix predicate for lists
@@ -97,7 +97,7 @@ module Decidable {a}{A : Set a}(_≟_ : Decidable (_≡_ {A = A})) where
   _⊒?_ : Decidable (_⊒_ {A = A})
   xs ⊒? ys = ys ⊑? xs
 
-import Relation.Binary.PropositionalEquality.Core as PC
+import Relation.Binary.PropositionalEquality as PC
 ⊑-preorder : ∀ {ℓ}{A : Set ℓ} → Preorder _ _ _
 ⊑-preorder {A = A} = record {
   Carrier = List A ; _≈_ = _≡_ ; _∼_ = _⊑_ ;
